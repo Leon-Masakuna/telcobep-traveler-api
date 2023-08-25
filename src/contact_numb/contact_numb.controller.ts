@@ -17,7 +17,7 @@ import { AuthGuard } from '@nestjs/passport';
 export class ContactNumbController {
   constructor(private readonly contactNumbService: ContactNumbService) {}
 
-  @Post()
+  @Post('/create')
   create(@Body() createContactNumbDto: CreateContactNumbDto) {
     return this.contactNumbService.create(createContactNumbDto);
   }
@@ -34,7 +34,7 @@ export class ContactNumbController {
     return this.contactNumbService.findOne(+id);
   }
 
-  @Patch(':id')
+  @Patch('/update/:id')
   @UseGuards(AuthGuard('jwt'))
   update(
     @Param('id') id: string,

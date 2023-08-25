@@ -1,26 +1,34 @@
 import { Injectable } from '@nestjs/common';
 import { CreateMbokaDto } from './dto/create-mboka.dto';
 import { UpdateMbokaDto } from './dto/update-mboka.dto';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Mboka } from './entities/mboka.entity';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class MbokaService {
+  constructor(
+    @InjectRepository(Mboka)
+    private readonly mbokaRepository: Repository<Mboka>,
+  ) {}
+
   create(createMbokaDto: CreateMbokaDto) {
-    return 'This action adds a new mboka';
+    return this.mbokaRepository.save(createMbokaDto);
   }
 
   findAll() {
-    return `This action returns all mboka`;
+    return this.mbokaRepository.find();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} mboka`;
+  findOne(id_mboka: number) {
+    return this.mbokaRepository.findOneBy({ id_mboka });
   }
 
-  update(id: number, updateMbokaDto: UpdateMbokaDto) {
-    return `This action updates a #${id} mboka`;
+  update(id_mboka: number, updateMbokaDto: UpdateMbokaDto) {
+    return this.mbokaRepository.update(id_mboka, updateMbokaDto);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} mboka`;
+  remove(id_mboka: number) {
+    return this.mbokaRepository.delete(id_mboka);
   }
 }

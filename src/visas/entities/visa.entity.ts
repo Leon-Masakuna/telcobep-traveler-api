@@ -34,5 +34,5 @@ export class Visa {
 
   @ManyToOne(() => Mboka, (mboka) => mboka.visa)
   @JoinColumn({ name: 'visa_country_id' })
-  visa_country_id: Mutu;
+  visa_country_id: Mboka;
 }

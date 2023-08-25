@@ -33,6 +33,7 @@ export class UserService {
         userpassword,
         created_date,
         privilege_id,
+        contact_id,
       } = createUserDto;
 
       const hashedPassword = await bcrypt.hash(userpassword, 10);
@@ -45,6 +46,7 @@ export class UserService {
         userpassword: hashedPassword,
         created_date,
         privilege_id,
+        contact_id,
       });
 
       const token = this.jwtService.sign({ id: user.id_user });
@@ -53,7 +55,10 @@ export class UserService {
     } catch (error) {
       if (error.code === 'ER_DUP_ENTRY') {
         throw new ConflictException('Username already exist');
+      } else if (error.code === 'ER_NO_REFERENCED_ROW_2') {
+        throw new ConflictException('No such reference key for phone number');
       } else {
+        console.log(error.code);
         throw new InternalServerErrorException();
       }
     }
@@ -100,6 +105,7 @@ export class UserService {
         userpassword,
         changed_date,
         privilege_id,
+        contact_id,
       } = updateUserDto;
 
       const hashedPassword = await bcrypt.hash(userpassword, 10);
@@ -112,6 +118,7 @@ export class UserService {
         userpassword: hashedPassword,
         changed_date,
         privilege_id,
+        contact_id,
       });
 
       return { user };

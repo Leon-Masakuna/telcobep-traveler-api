@@ -1,26 +1,34 @@
 import { Injectable } from '@nestjs/common';
 import { CreateMukandaDto } from './dto/create-mukanda.dto';
 import { UpdateMukandaDto } from './dto/update-mukanda.dto';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Mukanda } from './entities/mukanda.entity';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class MukandaService {
+  constructor(
+    @InjectRepository(Mukanda)
+    private readonly mukandaRepository: Repository<Mukanda>,
+  ) {}
+
   create(createMukandaDto: CreateMukandaDto) {
-    return 'This action adds a new mukanda';
+    return this.mukandaRepository.save(createMukandaDto);
   }
 
   findAll() {
-    return `This action returns all mukanda`;
+    return this.mukandaRepository.find();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} mukanda`;
+  findOne(id_muk: number) {
+    return this.mukandaRepository.findOneBy({ id_muk });
   }
 
-  update(id: number, updateMukandaDto: UpdateMukandaDto) {
-    return `This action updates a #${id} mukanda`;
+  update(id_muk: number, updateMukandaDto: UpdateMukandaDto) {
+    return this.mukandaRepository.update(id_muk, updateMukandaDto);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} mukanda`;
+  remove(id_muk: number) {
+    return this.mukandaRepository.delete(id_muk);
   }
 }

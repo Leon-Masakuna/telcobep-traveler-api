@@ -7,7 +7,6 @@ import {
   Param,
   Delete,
   UseGuards,
-  Req,
 } from '@nestjs/common';
 import { MutuService } from './mutu.service';
 import { CreateMutuDto } from './dto/create-mutu.dto';
@@ -21,8 +20,8 @@ export class MutuController {
 
   @Post('/register')
   @UseGuards(AuthGuard())
-  create(@Body() createMutuDto: CreateMutuDto, @Req() req): Promise<Mutu> {
-    return this.mutuService.create(createMutuDto, req.user);
+  create(@Body() createMutuDto: CreateMutuDto): Promise<Mutu> {
+    return this.mutuService.create(createMutuDto);
   }
 
   @Get('/get')

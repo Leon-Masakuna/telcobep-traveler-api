@@ -4,7 +4,6 @@ import { UpdateMutuDto } from './dto/update-mutu.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Mutu } from './entities/mutu.entity';
 import { Repository } from 'typeorm';
-import { User } from 'src/user/entities/user.entity';
 
 @Injectable()
 export class MutuService {
@@ -13,10 +12,8 @@ export class MutuService {
     private readonly mutuRepository: Repository<Mutu>,
   ) {}
 
-  create(createMutuDto: CreateMutuDto, user: User) {
-    const data = Object.assign(createMutuDto, { user_id: user.id_user });
-
-    return this.mutuRepository.save(data);
+  create(createMutuDto: CreateMutuDto) {
+    return this.mutuRepository.save(createMutuDto);
   }
 
   findAll() {

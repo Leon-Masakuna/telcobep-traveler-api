@@ -15,7 +15,7 @@ export class Mboka {
   @Column()
   mboka_name: string;
 
-  @OneToMany(() => City, (city) => city.city_country_id)
+  @OneToMany(() => City, (city) => city.id_mboka)
   city: City[];
 
   @OneToMany(() => Mukanda, (mukanda) => mukanda.muk_mboka_id)

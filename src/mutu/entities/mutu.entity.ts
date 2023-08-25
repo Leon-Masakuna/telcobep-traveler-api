@@ -1,4 +1,6 @@
+import { Admins } from 'src/admin/entities/admin.entity';
 import { Adresse } from 'src/adresse/entities/adresse.entity';
+import { City } from 'src/city/entities/city.entity';
 import { ContactEmail } from 'src/contact_email/entities/contact_email.entity';
 import { ContactNumb } from 'src/contact_numb/entities/contact_numb.entity';
 import { Etranger } from 'src/etranger/entities/etranger.entity';
@@ -9,11 +11,13 @@ import { User } from 'src/user/entities/user.entity';
 import { Visa } from 'src/visas/entities/visa.entity';
 import {
   Column,
+  CreateDateColumn,
   Entity,
   JoinColumn,
   ManyToOne,
   OneToMany,
   PrimaryGeneratedColumn,
+  UpdateDateColumn,
 } from 'typeorm';
 
 @Entity()
@@ -33,15 +37,19 @@ export class Mutu {
   @Column()
   date_of_birth: Date;
 
-  @Column()
+  @CreateDateColumn()
   created_date: Date;
 
-  @Column()
+  @UpdateDateColumn()
   changed_date: Date;
 
   @ManyToOne(() => User, (user) => user.mutu)
   @JoinColumn({ name: 'user_id' })
   user_id: User;
+
+  @ManyToOne(() => City, (city) => city.place_of_birth)
+  @JoinColumn({ name: 'place_of_birth' })
+  place_of_birth: City;
 
   @ManyToOne(() => Adresse, (address) => address.mutu)
   @JoinColumn({ name: 'address_id' })
@@ -54,6 +62,10 @@ export class Mutu {
   @ManyToOne(() => ContactNumb, (number) => number.mutu)
   @JoinColumn({ name: 'contact_number' })
   contact_number: ContactNumb;
+
+  @ManyToOne(() => Admins, (admin) => admin.mutu)
+  @JoinColumn({ name: 'id_changer' })
+  id_changer: Admins;
 
   @OneToMany(() => Mobembo, (mobembo) => mobembo.mutu_id)
   mobembo: Mobembo[];

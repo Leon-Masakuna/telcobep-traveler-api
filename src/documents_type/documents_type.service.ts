@@ -1,26 +1,37 @@
 import { Injectable } from '@nestjs/common';
 import { CreateDocumentsTypeDto } from './dto/create-documents_type.dto';
 import { UpdateDocumentsTypeDto } from './dto/update-documents_type.dto';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { DocumentsType } from './entities/documents_type.entity';
 
 @Injectable()
 export class DocumentsTypeService {
+  constructor(
+    @InjectRepository(DocumentsType)
+    private readonly documentTypeRepository: Repository<DocumentsType>,
+  ) {}
+
   create(createDocumentsTypeDto: CreateDocumentsTypeDto) {
-    return 'This action adds a new documentsType';
+    return this.documentTypeRepository.save(createDocumentsTypeDto);
   }
 
   findAll() {
-    return `This action returns all documentsType`;
+    return this.documentTypeRepository.find();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} documentsType`;
+  findOne(id_doc_type: number) {
+    return this.documentTypeRepository.findOneBy({ id_doc_type });
   }
 
-  update(id: number, updateDocumentsTypeDto: UpdateDocumentsTypeDto) {
-    return `This action updates a #${id} documentsType`;
+  update(id_doc_type: number, updateDocumentsTypeDto: UpdateDocumentsTypeDto) {
+    return this.documentTypeRepository.update(
+      id_doc_type,
+      updateDocumentsTypeDto,
+    );
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} documentsType`;
+  remove(id_doc_type: number) {
+    return this.documentTypeRepository.delete(id_doc_type);
   }
 }

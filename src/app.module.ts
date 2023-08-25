@@ -10,7 +10,7 @@ import { MutuModule } from './mutu/mutu.module';
 import { Mutu } from './mutu/entities/mutu.entity';
 import { AdminModule } from './admin/admin.module';
 import { PrivilegeModule } from './privilege/privilege.module';
-import { Admin } from './admin/entities/admin.entity';
+import { Admins } from './admin/entities/admin.entity';
 import { Privilege } from './privilege/entities/privilege.entity';
 import { AdresseModule } from './adresse/adresse.module';
 import { CityModule } from './city/city.module';
@@ -57,7 +57,7 @@ import { Binationaux } from './binationaux/entities/binationaux.entity';
       entities: [
         User,
         Mutu,
-        Admin,
+        Admins,
         Privilege,
         Mboka,
         City,

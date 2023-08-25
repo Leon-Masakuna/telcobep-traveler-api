@@ -1,6 +1,7 @@
 import { Adresse } from 'src/adresse/entities/adresse.entity';
 import { Mboka } from 'src/mboka/entities/mboka.entity';
 import { Mobembo } from 'src/mobembo/entities/mobembo.entity';
+import { Mutu } from 'src/mutu/entities/mutu.entity';
 import {
   Column,
   Entity,
@@ -23,7 +24,7 @@ export class City {
 
   @ManyToOne(() => Mboka, (mboka) => mboka.city)
   @JoinColumn({ name: 'id_mboka' })
-  city_country_id: Mboka;
+  id_mboka: Mboka;
 
   @OneToMany(() => Adresse, (address) => address.addr_city_id)
   address: Adresse[];
@@ -39,4 +40,7 @@ export class City {
 
   @OneToMany(() => Mobembo, (mobembo) => mobembo.city_transit_2)
   mobembo_city_transit_2: Mobembo[];
+
+  @OneToMany(() => Mutu, (mutu) => mutu.place_of_birth)
+  place_of_birth: Mutu[];
 }

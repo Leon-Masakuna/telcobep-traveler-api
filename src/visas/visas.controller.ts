@@ -1,18 +1,26 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { VisasService } from './visas.service';
 import { CreateVisaDto } from './dto/create-visa.dto';
 import { UpdateVisaDto } from './dto/update-visa.dto';
 
-@Controller('visas')
+@Controller('api/visas')
 export class VisasController {
   constructor(private readonly visasService: VisasService) {}
 
-  @Post()
+  @Post('/create')
   create(@Body() createVisaDto: CreateVisaDto) {
     return this.visasService.create(createVisaDto);
   }
 
-  @Get()
+  @Get('/get')
   findAll() {
     return this.visasService.findAll();
   }

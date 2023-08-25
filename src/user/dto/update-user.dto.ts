@@ -3,6 +3,7 @@ import { CreateUserDto } from './create-user.dto';
 import { IsNotEmpty, IsOptional, IsString, MinLength } from 'class-validator';
 import { Type } from 'class-transformer';
 import { Privilege } from 'src/privilege/entities/privilege.entity';
+import { ContactNumb } from 'src/contact_numb/entities/contact_numb.entity';
 
 export class UpdateUserDto extends PartialType(CreateUserDto) {
   @IsString()
@@ -32,4 +33,8 @@ export class UpdateUserDto extends PartialType(CreateUserDto) {
   @IsOptional()
   @Type(() => Number)
   public privilege_id: Privilege;
+
+  @IsOptional()
+  @Type(() => Number)
+  public contact_id: ContactNumb;
 }

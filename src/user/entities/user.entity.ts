@@ -1,3 +1,4 @@
+import { ContactNumb } from 'src/contact_numb/entities/contact_numb.entity';
 import { Mutu } from 'src/mutu/entities/mutu.entity';
 import { Privilege } from 'src/privilege/entities/privilege.entity';
 import {
@@ -10,6 +11,7 @@ import {
   BaseEntity,
   CreateDateColumn,
   UpdateDateColumn,
+  OneToOne,
 } from 'typeorm';
 
 @Entity()
@@ -46,6 +48,10 @@ export class User extends BaseEntity {
 
   @ManyToOne(() => Privilege, (privilege) => privilege.user)
   @JoinColumn({ name: 'privilege_id' })
-  @Column({ default: 1 })
+  @Column({ default: 2 })
   privilege_id: Privilege;
+
+  @OneToOne(() => ContactNumb, { cascade: true })
+  @JoinColumn({ name: 'id_contact' })
+  contact_id: ContactNumb;
 }

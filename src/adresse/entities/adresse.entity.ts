@@ -28,5 +28,5 @@ export class Adresse {
   addr_city_id: City;
 
   @OneToMany(() => Mutu, (mutu) => mutu.address_id)
-  mutu: Mutu;
+  mutu: Mutu[];
 }

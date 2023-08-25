@@ -1,33 +1,51 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  UseGuards,
+} from '@nestjs/common';
 import { AirlineCompanyService } from './airline_company.service';
 import { CreateAirlineCompanyDto } from './dto/create-airline_company.dto';
 import { UpdateAirlineCompanyDto } from './dto/update-airline_company.dto';
+import { AuthGuard } from '@nestjs/passport';
 
-@Controller('airline-company')
+@Controller('api/airline-company')
 export class AirlineCompanyController {
   constructor(private readonly airlineCompanyService: AirlineCompanyService) {}
 
-  @Post()
+  @Post('/create')
+  @UseGuards(AuthGuard('jwt'))
   create(@Body() createAirlineCompanyDto: CreateAirlineCompanyDto) {
     return this.airlineCompanyService.create(createAirlineCompanyDto);
   }
 
-  @Get()
+  @Get('/get')
+  @UseGuards(AuthGuard('jwt'))
   findAll() {
     return this.airlineCompanyService.findAll();
   }
 
   @Get(':id')
+  @UseGuards(AuthGuard('jwt'))
   findOne(@Param('id') id: string) {
     return this.airlineCompanyService.findOne(+id);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateAirlineCompanyDto: UpdateAirlineCompanyDto) {
+  @UseGuards(AuthGuard('jwt'))
+  update(
+    @Param('id') id: string,
+    @Body() updateAirlineCompanyDto: UpdateAirlineCompanyDto,
+  ) {
     return this.airlineCompanyService.update(+id, updateAirlineCompanyDto);
   }
 
   @Delete(':id')
+  @UseGuards(AuthGuard('jwt'))
   remove(@Param('id') id: string) {
     return this.airlineCompanyService.remove(+id);
   }

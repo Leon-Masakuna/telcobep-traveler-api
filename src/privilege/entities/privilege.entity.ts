@@ -1,4 +1,4 @@
-import { Admin } from 'src/admin/entities/admin.entity';
+import { Admins } from 'src/admin/entities/admin.entity';
 import { User } from 'src/user/entities/user.entity';
 import {
   Column,
@@ -17,9 +17,9 @@ export class Privilege {
   @Column()
   privilege_name: string;
 
-  @ManyToOne(() => Admin, (admin) => admin.privilege)
+  @ManyToOne(() => Admins, (admin) => admin.privilege)
   @JoinColumn({ name: 'admin_id' })
-  admin_id: Admin;
+  admin_id: Admins;
 
   @OneToMany(() => User, (user) => user.privilege_id)
   user: User[];

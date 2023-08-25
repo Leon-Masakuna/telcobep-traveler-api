@@ -18,10 +18,11 @@ export class ContactNumbService {
 
   async create(createContactNumbDto: CreateContactNumbDto) {
     try {
-      const { numero_ppl } = createContactNumbDto;
+      const { numero_ppl, numero_alt } = createContactNumbDto;
 
       const phone = await this.contactNumbRepository.save({
         numero_ppl,
+        numero_alt,
       });
 
       return { phone };
@@ -44,10 +45,11 @@ export class ContactNumbService {
 
   async update(id_contact: number, updateContactNumbDto: UpdateContactNumbDto) {
     try {
-      const { numero_ppl } = updateContactNumbDto;
+      const { numero_ppl, numero_alt } = updateContactNumbDto;
 
       const phone = await this.contactNumbRepository.update(id_contact, {
         numero_ppl,
+        numero_alt,
       });
 
       return { phone };

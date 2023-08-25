@@ -3,6 +3,7 @@ import { City } from 'src/city/entities/city.entity';
 import { Mutu } from 'src/mutu/entities/mutu.entity';
 import {
   Column,
+  CreateDateColumn,
   Entity,
   JoinColumn,
   ManyToOne,
@@ -20,7 +21,7 @@ export class Mobembo {
   @Column()
   date_mob: Date;
 
-  @Column()
+  @CreateDateColumn()
   created_date: Date;
 
   @Column()

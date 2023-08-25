@@ -1,26 +1,37 @@
 import { Injectable } from '@nestjs/common';
 import { CreateAirlineCompanyDto } from './dto/create-airline_company.dto';
 import { UpdateAirlineCompanyDto } from './dto/update-airline_company.dto';
+import { InjectRepository } from '@nestjs/typeorm';
+import { AirlineCompany } from './entities/airline_company.entity';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class AirlineCompanyService {
+  constructor(
+    @InjectRepository(AirlineCompany)
+    private readonly airlineCompanyRepository: Repository<AirlineCompany>,
+  ) {}
+
   create(createAirlineCompanyDto: CreateAirlineCompanyDto) {
-    return 'This action adds a new airlineCompany';
+    return this.airlineCompanyRepository.save(createAirlineCompanyDto);
   }
 
   findAll() {
-    return `This action returns all airlineCompany`;
+    return this.airlineCompanyRepository.find();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} airlineCompany`;
+  findOne(id_company: number) {
+    return this.airlineCompanyRepository.findOneBy({ id_company });
   }
 
-  update(id: number, updateAirlineCompanyDto: UpdateAirlineCompanyDto) {
-    return `This action updates a #${id} airlineCompany`;
+  update(id_company: number, updateAirlineCompanyDto: UpdateAirlineCompanyDto) {
+    return this.airlineCompanyRepository.update(
+      id_company,
+      updateAirlineCompanyDto,
+    );
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} airlineCompany`;
+  remove(id_company: number) {
+    return this.airlineCompanyRepository.delete(id_company);
   }
 }
