@@ -1,4 +1,8 @@
-import { Injectable } from '@nestjs/common';
+import {
+  ConflictException,
+  Injectable,
+  InternalServerErrorException,
+} from '@nestjs/common';
 import { CreateMukandaDto } from './dto/create-mukanda.dto';
 import { UpdateMukandaDto } from './dto/update-mukanda.dto';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -12,8 +16,42 @@ export class MukandaService {
     private readonly mukandaRepository: Repository<Mukanda>,
   ) {}
 
-  create(createMukandaDto: CreateMukandaDto) {
-    return this.mukandaRepository.save(createMukandaDto);
+  async create(createMukandaDto: CreateMukandaDto) {
+    try {
+      const {
+        muk_number,
+        muk_deliver_date,
+        muk_expirer_date,
+        muk_authority,
+        muk_pic_ref,
+        muk_type_id,
+        muk_mboka_id,
+        muk_verif_dgm_id,
+        mutu_id,
+      } = createMukandaDto;
+
+      const mukanda = await this.mukandaRepository.save({
+        muk_number,
+        muk_deliver_date,
+        muk_expirer_date,
+        muk_authority,
+        muk_pic_ref,
+        muk_type_id,
+        muk_mboka_id,
+        muk_verif_dgm_id,
+        mutu_id,
+      });
+
+      return { mukanda };
+    } catch (error) {
+      if (error.code === 'ER_DUP_ENTRY') {
+        throw new ConflictException('This mukanda number already exists');
+      } else if (error.code === 'ER_NO_REFERENCED_ROW_2') {
+        throw new ConflictException('Check if all the reference keys exist');
+      } else {
+        throw new InternalServerErrorException();
+      }
+    }
   }
 
   findAll() {

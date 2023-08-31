@@ -22,8 +22,7 @@ export class ContactNumbController {
     return this.contactNumbService.create(createContactNumbDto);
   }
 
-  @Get()
-  @UseGuards(AuthGuard('jwt'))
+  @Get('/get')
   findAll() {
     return this.contactNumbService.findAll();
   }

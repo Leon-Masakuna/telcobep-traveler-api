@@ -23,7 +23,7 @@ export class Adresse {
   @Column()
   addr_quartier: string;
 
-  @ManyToOne(() => City, (city) => city.address)
+  @ManyToOne(() => City, (city) => city.address, { cascade: true, eager: true })
   @JoinColumn({ name: 'addr_city_id' })
   addr_city_id: City;
 

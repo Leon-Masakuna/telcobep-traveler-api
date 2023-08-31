@@ -9,7 +9,7 @@ export class AirlineCompany {
   @Column()
   name: string;
 
-  @Column()
+  @Column({ unique: true })
   code_IATA: string;
 
   @OneToMany(() => Mobembo, (mobembo) => mobembo.company_id)

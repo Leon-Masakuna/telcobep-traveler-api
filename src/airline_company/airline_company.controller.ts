@@ -35,7 +35,7 @@ export class AirlineCompanyController {
     return this.airlineCompanyService.findOne(+id);
   }
 
-  @Patch(':id')
+  @Patch('/update/:id')
   @UseGuards(AuthGuard('jwt'))
   update(
     @Param('id') id: string,

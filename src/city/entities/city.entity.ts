@@ -22,7 +22,7 @@ export class City {
   @Column()
   city_name: string;
 
-  @ManyToOne(() => Mboka, (mboka) => mboka.city)
+  @ManyToOne(() => Mboka, (mboka) => mboka.city, { cascade: true, eager: true })
   @JoinColumn({ name: 'id_mboka' })
   id_mboka: Mboka;
 

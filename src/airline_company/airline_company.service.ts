@@ -1,4 +1,8 @@
-import { Injectable } from '@nestjs/common';
+import {
+  ConflictException,
+  Injectable,
+  InternalServerErrorException,
+} from '@nestjs/common';
 import { CreateAirlineCompanyDto } from './dto/create-airline_company.dto';
 import { UpdateAirlineCompanyDto } from './dto/update-airline_company.dto';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -12,8 +16,23 @@ export class AirlineCompanyService {
     private readonly airlineCompanyRepository: Repository<AirlineCompany>,
   ) {}
 
-  create(createAirlineCompanyDto: CreateAirlineCompanyDto) {
-    return this.airlineCompanyRepository.save(createAirlineCompanyDto);
+  async create(createAirlineCompanyDto: CreateAirlineCompanyDto) {
+    try {
+      const { name, code_IATA } = createAirlineCompanyDto;
+
+      const company = await this.airlineCompanyRepository.save({
+        name,
+        code_IATA,
+      });
+
+      return { company };
+    } catch (error) {
+      if (error.code === 'ER_DUP_ENTRY') {
+        throw new ConflictException('Code IATA already exists');
+      } else {
+        throw new InternalServerErrorException();
+      }
+    }
   }
 
   findAll() {
@@ -24,11 +43,26 @@ export class AirlineCompanyService {
     return this.airlineCompanyRepository.findOneBy({ id_company });
   }
 
-  update(id_company: number, updateAirlineCompanyDto: UpdateAirlineCompanyDto) {
-    return this.airlineCompanyRepository.update(
-      id_company,
-      updateAirlineCompanyDto,
-    );
+  async update(
+    id_company: number,
+    updateAirlineCompanyDto: UpdateAirlineCompanyDto,
+  ) {
+    try {
+      const { name, code_IATA } = updateAirlineCompanyDto;
+
+      const company = await this.airlineCompanyRepository.update(id_company, {
+        name,
+        code_IATA,
+      });
+
+      return { company };
+    } catch (error) {
+      if (error.code === 'ER_DUP_ENTRY') {
+        throw new ConflictException('Code IATA already exists');
+      } else {
+        throw new InternalServerErrorException();
+      }
+    }
   }
 
   remove(id_company: number) {

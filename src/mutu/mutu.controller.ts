@@ -30,7 +30,7 @@ export class MutuController {
     return this.mutuService.findAll();
   }
 
-  @Get(':id')
+  @Get('/get/:id')
   @UseGuards(AuthGuard())
   findOne(@Param('id') id: string) {
     return this.mutuService.findOne(+id);

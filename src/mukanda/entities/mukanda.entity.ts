@@ -15,7 +15,7 @@ export class Mukanda {
   @PrimaryGeneratedColumn()
   id_muk: number;
 
-  @Column()
+  @Column({ unique: true })
   muk_number: number;
 
   @Column()

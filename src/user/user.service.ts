@@ -54,7 +54,7 @@ export class UserService {
       return { token, user };
     } catch (error) {
       if (error.code === 'ER_DUP_ENTRY') {
-        throw new ConflictException('Username already exist');
+        throw new ConflictException('Username already exists');
       } else if (error.code === 'ER_NO_REFERENCED_ROW_2') {
         throw new ConflictException('No such reference key for phone number');
       } else {

@@ -17,10 +17,11 @@ export class CreateMutuDto {
   public lastname: string;
 
   @IsString()
+  @IsOptional()
   public middlename: string;
 
   @IsString()
-  @IsOptional()
+  @IsNotEmpty()
   public date_of_birth: string;
 
   @IsString()

@@ -34,7 +34,7 @@ export class Mutu {
   @Column()
   middlename: string;
 
-  @Column()
+  @Column({ type: Date })
   date_of_birth: Date;
 
   @CreateDateColumn()
@@ -43,27 +43,42 @@ export class Mutu {
   @UpdateDateColumn()
   changed_date: Date;
 
-  @ManyToOne(() => User, (user) => user.mutu)
+  @ManyToOne(() => User, (user) => user.mutu, { cascade: true, eager: true })
   @JoinColumn({ name: 'user_id' })
   user_id: User;
 
-  @ManyToOne(() => City, (city) => city.place_of_birth)
+  @ManyToOne(() => City, (city) => city.place_of_birth, {
+    cascade: true,
+    eager: true,
+  })
   @JoinColumn({ name: 'place_of_birth' })
   place_of_birth: City;
 
-  @ManyToOne(() => Adresse, (address) => address.mutu)
+  @ManyToOne(() => Adresse, (address) => address.mutu, {
+    cascade: true,
+    eager: true,
+  })
   @JoinColumn({ name: 'address_id' })
   address_id: Adresse;
 
-  @ManyToOne(() => ContactEmail, (email) => email.mutu)
+  @ManyToOne(() => ContactEmail, (email) => email.mutu, {
+    cascade: true,
+    eager: true,
+  })
   @JoinColumn({ name: 'contact_email' })
   contact_email: ContactEmail;
 
-  @ManyToOne(() => ContactNumb, (number) => number.mutu)
+  @ManyToOne(() => ContactNumb, (number) => number.mutu, {
+    cascade: true,
+    eager: true,
+  })
   @JoinColumn({ name: 'contact_number' })
   contact_number: ContactNumb;
 
-  @ManyToOne(() => Admins, (admin) => admin.mutu)
+  @ManyToOne(() => Admins, (admin) => admin.mutu, {
+    cascade: true,
+    eager: true,
+  })
   @JoinColumn({ name: 'id_changer' })
   id_changer: Admins;
 

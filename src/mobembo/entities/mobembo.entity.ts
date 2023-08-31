@@ -15,7 +15,7 @@ export class Mobembo {
   @PrimaryGeneratedColumn()
   id_mobembo: number;
 
-  @Column()
+  @Column({ unique: true })
   ticket_number: number;
 
   @Column()

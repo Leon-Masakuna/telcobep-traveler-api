@@ -8,14 +8,13 @@ import {
   OneToMany,
   ManyToOne,
   JoinColumn,
-  BaseEntity,
   CreateDateColumn,
   UpdateDateColumn,
   OneToOne,
 } from 'typeorm';
 
 @Entity()
-export class User extends BaseEntity {
+export class User {
   @PrimaryGeneratedColumn()
   id_user: number;
 
@@ -43,15 +42,18 @@ export class User extends BaseEntity {
   @Column()
   verif_date: Date;
 
+  @OneToOne(() => ContactNumb, { cascade: true, eager: true })
+  @JoinColumn({ name: 'contact_id' })
+  contact_id: ContactNumb;
+
   @OneToMany(() => Mutu, (mutu) => mutu.user_id)
   mutu: Mutu[];
 
-  @ManyToOne(() => Privilege, (privilege) => privilege.user)
+  @ManyToOne(() => Privilege, (privilege) => privilege.user, {
+    cascade: true,
+    eager: true,
+  })
   @JoinColumn({ name: 'privilege_id' })
   @Column({ default: 2 })
   privilege_id: Privilege;
-
-  @OneToOne(() => ContactNumb, { cascade: true })
-  @JoinColumn({ name: 'id_contact' })
-  contact_id: ContactNumb;
 }

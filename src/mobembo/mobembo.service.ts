@@ -1,4 +1,8 @@
-import { Injectable } from '@nestjs/common';
+import {
+  ConflictException,
+  Injectable,
+  InternalServerErrorException,
+} from '@nestjs/common';
 import { CreateMobemboDto } from './dto/create-mobembo.dto';
 import { UpdateMobemboDto } from './dto/update-mobembo.dto';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -12,8 +16,42 @@ export class MobemboService {
     private readonly mobemboRepository: Repository<Mobembo>,
   ) {}
 
-  create(createMobemboDto: CreateMobemboDto) {
-    return this.mobemboRepository.save(createMobemboDto);
+  async create(createMobemboDto: CreateMobemboDto) {
+    try {
+      const {
+        ticket_number,
+        date_mob,
+        QRcode_ref,
+        company_id,
+        city_from_id,
+        city_dest_id,
+        city_transit_1,
+        city_transit_2,
+        mutu_id,
+      } = createMobemboDto;
+
+      const mobembo = await this.mobemboRepository.save({
+        ticket_number,
+        date_mob,
+        QRcode_ref,
+        company_id,
+        city_from_id,
+        city_dest_id,
+        city_transit_1,
+        city_transit_2,
+        mutu_id,
+      });
+
+      return { mobembo };
+    } catch (error) {
+      if (error.code === 'ER_DUP_ENTRY') {
+        throw new ConflictException('This mobembo ticket number already exist');
+      } else if (error.code === 'ER_NO_REFERENCED_ROW_2') {
+        throw new ConflictException('Check if all the reference keys exist');
+      } else {
+        throw new InternalServerErrorException();
+      }
+    }
   }
 
   findAll() {

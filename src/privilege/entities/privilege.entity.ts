@@ -17,7 +17,10 @@ export class Privilege {
   @Column()
   privilege_name: string;
 
-  @ManyToOne(() => Admins, (admin) => admin.privilege)
+  @ManyToOne(() => Admins, (admin) => admin.privilege, {
+    cascade: true,
+    eager: true,
+  })
   @JoinColumn({ name: 'admin_id' })
   admin_id: Admins;
 
