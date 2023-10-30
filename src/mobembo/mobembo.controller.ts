@@ -35,7 +35,7 @@ export class MobemboController {
     return this.mobemboService.findOne(+id);
   }
 
-  @Patch(':id')
+  @Patch('/update/:id')
   @UseGuards(AuthGuard('jwt'))
   update(@Param('id') id: string, @Body() updateMobemboDto: UpdateMobemboDto) {
     return this.mobemboService.update(+id, updateMobemboDto);

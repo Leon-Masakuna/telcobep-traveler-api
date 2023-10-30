@@ -1,4 +1,8 @@
-import { Injectable } from '@nestjs/common';
+import {
+  ConflictException,
+  Injectable,
+  InternalServerErrorException,
+} from '@nestjs/common';
 import { CreateMutuDto } from './dto/create-mutu.dto';
 import { UpdateMutuDto } from './dto/update-mutu.dto';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -12,8 +16,43 @@ export class MutuService {
     private readonly mutuRepository: Repository<Mutu>,
   ) {}
 
-  create(createMutuDto: CreateMutuDto) {
-    return this.mutuRepository.save(createMutuDto);
+  async create(createMutuDto: CreateMutuDto) {
+    try {
+      const {
+        firstname,
+        lastname,
+        middlename,
+        gender,
+        date_of_birth,
+        user_id,
+        place_of_birth,
+        address_id,
+        contact_email,
+        contact_number,
+      } = createMutuDto;
+
+      const mutu = await this.mutuRepository.save({
+        firstname,
+        lastname,
+        middlename,
+        gender,
+        date_of_birth,
+        user_id,
+        place_of_birth,
+        address_id,
+        contact_email: contact_email || null,
+        contact_number,
+      });
+
+      return { mutu };
+    } catch (error) {
+      if (error.code === 'ER_NO_REFERENCED_ROW_2') {
+        throw new ConflictException('No such reference key for email address');
+      } else {
+        console.log(error.code);
+        throw new InternalServerErrorException();
+      }
+    }
   }
 
   findAll() {

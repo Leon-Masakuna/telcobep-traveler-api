@@ -28,11 +28,11 @@ export class Visa {
   @Column()
   visa_pic_ref: string;
 
-  @ManyToOne(() => Mutu, (mutu) => mutu.visa)
+  @ManyToOne(() => Mutu, (mutu) => mutu.visa, { cascade: true, eager: true })
   @JoinColumn({ name: 'visa_traveler_id' })
   visa_traveler_id: Mutu;
 
-  @ManyToOne(() => Mboka, (mboka) => mboka.visa)
+  @ManyToOne(() => Mboka, (mboka) => mboka.visa, { cascade: true, eager: true })
   @JoinColumn({ name: 'visa_country_id' })
   visa_country_id: Mboka;
 }

@@ -1,3 +1,4 @@
+import { ContactEmail } from 'src/contact_email/entities/contact_email.entity';
 import { ContactNumb } from 'src/contact_numb/entities/contact_numb.entity';
 import { Mutu } from 'src/mutu/entities/mutu.entity';
 import { Privilege } from 'src/privilege/entities/privilege.entity';
@@ -45,6 +46,10 @@ export class User {
   @OneToOne(() => ContactNumb, { cascade: true, eager: true })
   @JoinColumn({ name: 'contact_id' })
   contact_id: ContactNumb;
+
+  @OneToOne(() => ContactEmail, { cascade: true, eager: true })
+  @JoinColumn({ name: 'email_id' })
+  email_id: ContactEmail;
 
   @OneToMany(() => Mutu, (mutu) => mutu.user_id)
   mutu: Mutu[];

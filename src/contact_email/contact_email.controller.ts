@@ -28,7 +28,7 @@ export class ContactEmailController {
     return this.contactEmailService.findAll();
   }
 
-  @Get(':id')
+  @Get('/get/:id')
   @UseGuards(AuthGuard('jwt'))
   findOne(@Param('id') id: string) {
     return this.contactEmailService.findOne(+id);

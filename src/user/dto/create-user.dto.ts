@@ -1,5 +1,6 @@
 import { Type } from 'class-transformer';
 import { IsString, IsNotEmpty, MinLength, IsOptional } from 'class-validator';
+import { ContactEmail } from 'src/contact_email/entities/contact_email.entity';
 import { ContactNumb } from 'src/contact_numb/entities/contact_numb.entity';
 import { Privilege } from 'src/privilege/entities/privilege.entity';
 
@@ -36,4 +37,8 @@ export class CreateUserDto {
   @IsOptional()
   @Type(() => Number)
   public contact_id: ContactNumb;
+
+  @IsOptional()
+  @Type(() => Number)
+  public email_id: ContactEmail;
 }

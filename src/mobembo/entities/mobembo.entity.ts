@@ -27,27 +27,42 @@ export class Mobembo {
   @Column()
   QRcode_ref: string;
 
-  @ManyToOne(() => AirlineCompany, (company) => company.mobembo)
+  @ManyToOne(() => AirlineCompany, (company) => company.mobembo, {
+    cascade: true,
+    eager: true,
+  })
   @JoinColumn({ name: 'company_id' })
   company_id: AirlineCompany;
 
-  @ManyToOne(() => City, (city) => city.mobembo_city_from)
+  @ManyToOne(() => City, (city) => city.mobembo_city_from, {
+    cascade: true,
+    eager: true,
+  })
   @JoinColumn({ name: 'city_from_id' })
   city_from_id: City;
 
-  @ManyToOne(() => City, (city) => city.mobembo_city_dest)
+  @ManyToOne(() => City, (city) => city.mobembo_city_dest, {
+    cascade: true,
+    eager: true,
+  })
   @JoinColumn({ name: 'city_dest_id' })
   city_dest_id: City;
 
-  @ManyToOne(() => City, (city) => city.mobembo_city_transit_1)
+  @ManyToOne(() => City, (city) => city.mobembo_city_transit_1, {
+    cascade: true,
+    eager: true,
+  })
   @JoinColumn({ name: 'city_transit_1' })
   city_transit_1: City;
 
-  @ManyToOne(() => City, (city) => city.mobembo_city_transit_2)
+  @ManyToOne(() => City, (city) => city.mobembo_city_transit_2, {
+    cascade: true,
+    eager: true,
+  })
   @JoinColumn({ name: 'city_transit_2' })
   city_transit_2: City;
 
-  @ManyToOne(() => Mutu, (mutu) => mutu.mobembo)
+  @ManyToOne(() => Mutu, (mutu) => mutu.mobembo, { cascade: true, eager: true })
   @JoinColumn({ name: 'mutu_id' })
   mutu_id: Mutu;
 }

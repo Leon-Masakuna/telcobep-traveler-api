@@ -38,7 +38,7 @@ export class MukandaService {
         muk_pic_ref,
         muk_type_id,
         muk_mboka_id,
-        muk_verif_dgm_id,
+        muk_verif_dgm_id: muk_verif_dgm_id || null,
         mutu_id,
       });
 

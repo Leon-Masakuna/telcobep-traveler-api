@@ -34,7 +34,10 @@ export class Mutu {
   @Column()
   middlename: string;
 
-  @Column({ type: Date })
+  @Column()
+  gender: string;
+
+  @Column()
   date_of_birth: Date;
 
   @CreateDateColumn()

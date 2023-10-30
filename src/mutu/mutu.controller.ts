@@ -11,7 +11,6 @@ import {
 import { MutuService } from './mutu.service';
 import { CreateMutuDto } from './dto/create-mutu.dto';
 import { UpdateMutuDto } from './dto/update-mutu.dto';
-import { Mutu } from './entities/mutu.entity';
 import { AuthGuard } from '@nestjs/passport';
 
 @Controller('api/mutu')
@@ -20,7 +19,7 @@ export class MutuController {
 
   @Post('/register')
   @UseGuards(AuthGuard())
-  create(@Body() createMutuDto: CreateMutuDto): Promise<Mutu> {
+  create(@Body() createMutuDto: CreateMutuDto) {
     return this.mutuService.create(createMutuDto);
   }
 

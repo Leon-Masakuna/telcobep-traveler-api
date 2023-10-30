@@ -13,10 +13,10 @@ export class ContactEmail {
   @PrimaryGeneratedColumn()
   id_email: number;
 
-  @Column({ unique: true })
+  @Column()
   email_ppl: string;
 
-  @Column({ unique: true })
+  @Column()
   email_alt: string;
 
   @CreateDateColumn()

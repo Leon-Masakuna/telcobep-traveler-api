@@ -37,8 +37,8 @@ export class MobemboService {
         company_id,
         city_from_id,
         city_dest_id,
-        city_transit_1,
-        city_transit_2,
+        city_transit_1: city_transit_1 || null,
+        city_transit_2: city_transit_2 || null,
         mutu_id,
       });
 
@@ -64,8 +64,43 @@ export class MobemboService {
     });
   }
 
-  update(id_mobembo: number, updateMobemboDto: UpdateMobemboDto) {
-    return this.mobemboRepository.update(id_mobembo, updateMobemboDto);
+  async update(id_mobembo: number, updateMobemboDto: UpdateMobemboDto) {
+    try {
+      const {
+        ticket_number,
+        date_mob,
+        QRcode_ref,
+        company_id,
+        city_from_id,
+        city_dest_id,
+        city_transit_1,
+        city_transit_2,
+        mutu_id,
+      } = updateMobemboDto;
+
+      const mobembo = await this.mobemboRepository.update(id_mobembo, {
+        ticket_number,
+        date_mob,
+        QRcode_ref,
+        company_id,
+        city_from_id,
+        city_dest_id,
+        city_transit_1,
+        city_transit_2,
+        mutu_id,
+      });
+
+      return { mobembo };
+    } catch (error) {
+      if (error.code === 'ER_DUP_ENTRY') {
+        throw new ConflictException('This mobembo ticket number already exist');
+      } else if (error.code === 'ER_NO_REFERENCED_ROW_2') {
+        throw new ConflictException('Check if all the reference keys exist');
+      } else {
+        throw new InternalServerErrorException();
+      }
+    }
+    // return this.mobemboRepository.update(id_mobembo, updateMobemboDto);
   }
 
   remove(id_mobembo: number) {

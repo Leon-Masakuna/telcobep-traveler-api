@@ -7,5 +7,5 @@ export class UpdateDocumentsTypeDto extends PartialType(
 ) {
   @IsString()
   @IsNotEmpty()
-  public type: string;
+  public doc_type: string;
 }

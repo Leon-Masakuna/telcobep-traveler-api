@@ -7,7 +7,7 @@ export class DocumentsType {
   id_doc_type: number;
 
   @Column()
-  type: string;
+  doc_type: string;
 
   @OneToMany(() => Mukanda, (mukanda) => mukanda.muk_type_id)
   mukanda: Mukanda[];

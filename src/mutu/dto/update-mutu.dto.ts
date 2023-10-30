@@ -28,6 +28,10 @@ export class UpdateMutuDto extends PartialType(CreateMutuDto) {
   public middlename: string;
 
   @IsString()
+  @IsOptional()
+  public gender: string;
+
+  @IsString()
   @IsNotEmpty()
   public date_of_birth: string;
 
