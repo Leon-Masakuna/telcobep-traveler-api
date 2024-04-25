@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { PartialType } from '@nestjs/mapped-types';
 import { CreateMbokaDto } from './create-mboka.dto';
 import { IsNumber, IsNotEmpty, IsString } from 'class-validator';

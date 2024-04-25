@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { Module } from '@nestjs/common';
 import { MbokaService } from './mboka.service';
 import { MbokaController } from './mboka.controller';

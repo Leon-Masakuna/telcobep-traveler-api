@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { PartialType } from '@nestjs/mapped-types';
 import { CreateDocumentsTypeDto } from './create-documents_type.dto';
 import { IsNotEmpty, IsString } from 'class-validator';

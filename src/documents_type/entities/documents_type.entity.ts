@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { Mukanda } from 'src/mukanda/entities/mukanda.entity';
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 

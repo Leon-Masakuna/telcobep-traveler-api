@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { Type } from 'class-transformer';
 import { IsNumber, IsNotEmpty, IsString, IsOptional } from 'class-validator';
 import { DgmAgent } from 'src/dgm_agent/entities/dgm_agent.entity';

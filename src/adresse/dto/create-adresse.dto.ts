@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { Type } from 'class-transformer';
 import { IsNotEmpty, IsNumber, IsString } from 'class-validator';
 import { City } from 'src/city/entities/city.entity';

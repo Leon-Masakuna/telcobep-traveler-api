@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { Mutu } from 'src/mutu/entities/mutu.entity';
 import {
   Column,

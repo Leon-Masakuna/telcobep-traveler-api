@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { City } from 'src/city/entities/city.entity';
 import { Etranger } from 'src/etranger/entities/etranger.entity';
 import { Mukanda } from 'src/mukanda/entities/mukanda.entity';

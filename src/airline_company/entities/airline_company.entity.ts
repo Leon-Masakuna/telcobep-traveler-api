@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { Mobembo } from 'src/mobembo/entities/mobembo.entity';
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 

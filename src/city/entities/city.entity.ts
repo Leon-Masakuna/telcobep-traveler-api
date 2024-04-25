@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { Adresse } from 'src/adresse/entities/adresse.entity';
 import { Mboka } from 'src/mboka/entities/mboka.entity';
 import { Mobembo } from 'src/mobembo/entities/mobembo.entity';

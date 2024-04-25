@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { Module } from '@nestjs/common';
 import { MukandaService } from './mukanda.service';
 import { MukandaController } from './mukanda.controller';

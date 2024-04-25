@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { Type } from 'class-transformer';
 import { IsString, IsNotEmpty, IsOptional } from 'class-validator';
 import { Mboka } from 'src/mboka/entities/mboka.entity';

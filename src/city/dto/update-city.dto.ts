@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { PartialType } from '@nestjs/mapped-types';
 import { CreateCityDto } from './create-city.dto';
 import { Type } from 'class-transformer';

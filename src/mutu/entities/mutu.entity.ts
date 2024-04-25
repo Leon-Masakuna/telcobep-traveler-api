@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { Admins } from 'src/admin/entities/admin.entity';
 import { Adresse } from 'src/adresse/entities/adresse.entity';
 import { City } from 'src/city/entities/city.entity';

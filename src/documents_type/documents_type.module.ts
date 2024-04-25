@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { Module } from '@nestjs/common';
 import { DocumentsTypeService } from './documents_type.service';
 import { DocumentsTypeController } from './documents_type.controller';

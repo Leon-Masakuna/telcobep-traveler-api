@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { Injectable } from '@nestjs/common';
 import { CreateMbokaDto } from './dto/create-mboka.dto';
 import { UpdateMbokaDto } from './dto/update-mboka.dto';

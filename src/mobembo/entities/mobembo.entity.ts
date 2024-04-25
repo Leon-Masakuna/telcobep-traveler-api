@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { AirlineCompany } from 'src/airline_company/entities/airline_company.entity';
 import { City } from 'src/city/entities/city.entity';
 import { Mutu } from 'src/mutu/entities/mutu.entity';

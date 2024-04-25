@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { Injectable } from '@nestjs/common';
 import { CreateVisaDto } from './dto/create-visa.dto';
 import { UpdateVisaDto } from './dto/update-visa.dto';

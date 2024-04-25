@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Injectable } from '@nestjs/common';
 import { CreatePrivilegeDto } from './dto/create-privilege.dto';
 import { UpdatePrivilegeDto } from './dto/update-privilege.dto';

@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { DgmAgent } from 'src/dgm_agent/entities/dgm_agent.entity';
 import { DocumentsType } from 'src/documents_type/entities/documents_type.entity';
 import { Mboka } from 'src/mboka/entities/mboka.entity';

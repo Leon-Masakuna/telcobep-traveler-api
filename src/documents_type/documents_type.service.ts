@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { Injectable } from '@nestjs/common';
 import { CreateDocumentsTypeDto } from './dto/create-documents_type.dto';
 import { UpdateDocumentsTypeDto } from './dto/update-documents_type.dto';

@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { Mboka } from 'src/mboka/entities/mboka.entity';
 import { Mutu } from 'src/mutu/entities/mutu.entity';
 import {

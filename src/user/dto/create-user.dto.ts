@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { Type } from 'class-transformer';
 import { IsString, IsNotEmpty, MinLength, IsOptional } from 'class-validator';
 import { ContactEmail } from 'src/contact_email/entities/contact_email.entity';

@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { Module } from '@nestjs/common';
 import { AdresseService } from './adresse.service';
 import { AdresseController } from './adresse.controller';

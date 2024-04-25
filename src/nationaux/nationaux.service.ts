@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Injectable } from '@nestjs/common';
 import { CreateNationauxDto } from './dto/create-nationaux.dto';
 import { UpdateNationauxDto } from './dto/update-nationaux.dto';

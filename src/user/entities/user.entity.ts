@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { ContactEmail } from 'src/contact_email/entities/contact_email.entity';
 import { ContactNumb } from 'src/contact_numb/entities/contact_numb.entity';
 import { Mutu } from 'src/mutu/entities/mutu.entity';
